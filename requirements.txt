@@ -1,0 +1,11 @@
+codetiming==1.4.0
+fastapi==0.112.1
+numpy~=2.1.0
+optuna==3.6.1
+pandas==2.2.2
+pydantic==2.8.2
+python-multipart==0.0.9
+scikit-learn==1.5.1
+torch==2.4.0
+torcheval==0.0.7
+uvicorn==0.30.6

@@ -1,0 +1,44 @@
+{
+  "in_std": {
+    "Accelerometer1RMS": 0.12755087596693726,
+    "Accelerometer2RMS": 0.145714494363032,
+    "Current": 0.7918598095290148,
+    "Pressure": 0.2597179799716757,
+    "Temperature": 9.426058425621486,
+    "Thermocouple": 2.5509940393777613,
+    "Voltage": 10.95203802276229,
+    "Volume Flow RateRMS": 45.50063664896063
+  },
+  "in_mean": {
+    "Accelerometer1RMS": 0.1275443883689252,
+    "Accelerometer2RMS": 0.1606753145772915,
+    "Current": 1.6381038629273224,
+    "Pressure": 0.07935811749714386,
+    "Temperature": 79.11800711617893,
+    "Thermocouple": 26.516761275155986,
+    "Voltage": 229.60461976008435,
+    "Volume Flow RateRMS": 74.86816747842516
+  },
+  "out_std": {
+    "Current": 1.0,
+    "Pressure": 1.0,
+    "Voltage": 1.0,
+    "Volume Flow RateRMS": 1.0,
+    "Time step": 0.19557679423603874,
+    "Acceleration mean": 1.9982662006341119,
+    "Acceleration diff": 0.08325978262829516,
+    "Temperature mean": 1.7965779568825657,
+    "Temperature diff": 0.8788103577243879
+  },
+  "out_mean": {
+    "Current": -1.7983681158178123e-16,
+    "Pressure": 4.37103361483496e-17,
+    "Voltage": 1.7309293114746443e-15,
+    "Volume Flow RateRMS": 1.198912077211875e-16,
+    "Time step": 0.03973981401634252,
+    "Acceleration mean": -7.992747181412498e-17,
+    "Acceleration diff": 8.86695390437949e-17,
+    "Temperature mean": 9.191659258624374e-16,
+    "Temperature diff": -1.6684859741198592e-15
+  }
+}
