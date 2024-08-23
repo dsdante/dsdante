@@ -1,10 +1,9 @@
 services:
   skab-pytorch:
     build: .
-    image: skab-pytorch
+    image: dsdante/skab-pytorch
     ports:
       - 8000:8000
-    command: python main.py
     deploy:
       resources:
         reservations:

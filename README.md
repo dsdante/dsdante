@@ -1,4 +1,7 @@
 Kaggle: [dsdante](https://www.kaggle.com/dsdante)  
-Docker Hub: [dsdante/predictive-analysis](https://hub.docker.com/repository/docker/dsdante/predictive-analysis/general)
+Docker: [dsdante/skab-pytorch](https://hub.docker.com/repository/docker/dsdante/skab-pytorch/general)
 
-В данной реализации веса модели загружаются в CUDA, поэтому приложение запускается только на компьютере с видеокартой Nvidia. Для доступа к CUDA под Linux требуется запуск в Docker CE; если он установлен параллельно с Docker Desktop, достаточно запустить `sudo docker compose up`. Под Windows не тестировал, но теоретически [должно заработать и в Docker Desktop](https://docs.docker.com/desktop/gpu).
+Запуск на CPU: `docker run -p 8000:8000 dsdante/skab-pytorch`  
+Запуск с CUDA: `sudo docker run -p 8000:8000 --gpus all dsdante/skab-pytorch`
+
+В дополнение к методу `POST /predict`, принимающему CSV в виде массива строк, также реализован метод `POST /predict/file`, принимающий файлы `*.csv` и бинарные файлы pickle, содержащие `pandas.DataFrame` или `Iterable[pandas.DataFrame]`.

@@ -24,12 +24,12 @@ OPTUNA_LOG_FILENAME = 'optuna_log.csv'
 MODE = 'use'  # tune / train / use
 
 WINDOW_LENGTH = 221
-BATCH_SIZE = 256  # 8
+BATCH_SIZE = 8
 LAYERS = 5  # hidden GRU layers
 HIDDEN_SIZE = 31  # the size of each hidden layer
 DROPOUT = 0.027043278483917  # GRU dropout
 LEARNING_RATE = 0.000668650863057288
-EPOCHS = 1  # 19
+EPOCHS = 19
 SHUFFLE = True  # reshuffle the data at every epoch
 OPTIMIZER = torch.optim.Adam
 torch.manual_seed(0)
@@ -200,7 +200,7 @@ def train(window_length: int,
         loss, f1 = test(train_dataloader, model, loss_fn)
         print(f"Epoch loss: {loss:>4f}  F1 score: {f1:>4f}\n")
 
-    torch.save(model.state_dict(), MODEL_FILENAME)
+    torch.save(model.cpu().state_dict(), MODEL_FILENAME)
     with open(SCALE_FILENAME, 'w') as f:
         json.dump({name: series.to_dict() for name, series in train_data.scale._asdict().items()}, f, indent=2)
     print(f"Model saved to '{MODEL_FILENAME}'.")
@@ -267,11 +267,12 @@ def predict_df(test_df: pd.DataFrame,
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"Using {device}.")
     mute_log("Some classes do not exist in the target")
-    model = TimeSeriesBinaryClassifier(9, hidden_size, layers, dropout).to(device)
 
+    model = TimeSeriesBinaryClassifier(9, hidden_size, layers, dropout).cpu()
+    model.load_state_dict(torch.load(MODEL_FILENAME, weights_only=True))
+    model = model.to(device)
     with open(SCALE_FILENAME, 'r') as f:
         scale = Scale(**json.load(f))
-    model.load_state_dict(torch.load(MODEL_FILENAME, weights_only=True))
 
     test_data = feature_engineering(test_df, sort=False, scale=scale)
     test_dataloader = get_dataloader(test_data, shuffle=False, device=device)
