@@ -1,0 +1,14 @@
+services:
+  skab-pytorch:
+    build: .
+    image: skab-pytorch
+    ports:
+      - 8000:8000
+    command: python main.py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
